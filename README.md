@@ -6,6 +6,8 @@ ForFinder is a search tool for folder and files. You can use that when you Sourc
 
 ### For Windows:
 
+![for-finder-windows](https://user-images.githubusercontent.com/29353162/147359061-426d167a-3c7f-4f79-98a9-13d9948ce882.PNG)
+
 Clone the project
 
 ```bash
@@ -27,6 +29,8 @@ For Example
 ```
 
 ### For Linux:
+
+![for-finder-linux](https://user-images.githubusercontent.com/29353162/147359069-087339ee-7124-4dd9-be85-28da4e4382c6.PNG)
 
 Clone the project
 
