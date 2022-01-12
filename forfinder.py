@@ -33,23 +33,23 @@ def typeScan(rootDirectory):
     jarExt = [".jar", ".war", ".ear", ".zip", ".aar"]
     for entry in os.scandir(rootDirectory):
         if entry.is_dir():
-            path_file = f"{rootDirectory}{os.sep}{entry.name}"
+            pathFile = f"{rootDirectory}{os.sep}{entry.name}"
             with open('folders.txt', 'a') as f:
-                f.write(repr(path_file) + '\n')
-            typeScan(path_file)
+                f.write(repr(pathFile) + '\n')
+            typeScan(pathFile)
         else:
-            typ = os.path.splitext(entry.name)[-1]
-            path_file = f"{rootDirectory}{os.sep}{entry.name}"
-            if typ in jarExt:
+            fileType = os.path.splitext(entry.name)[-1]
+            pathFile = f"{rootDirectory}{os.sep}{entry.name}"
+            if fileType in jarExt:
                 try:
-                    readOtherType(path_file)
+                    readOtherType(pathFile)
                 except:
-                    error = f"{Style.BRIGHT}[{NOW}]{Fore.RED}[ERROR-BAD FILE] => {Fore.BLUE}[FILE]: {Fore.YELLOW}{path_file}{Style.RESET_ALL}"
-                    writeErrorFile(path_file)
+                    error = f"{Style.BRIGHT}[{NOW}]{Fore.RED}[ERROR-BAD FILE] => {Fore.BLUE}[FILE]: {Fore.YELLOW}{pathFile}{Style.RESET_ALL}"
+                    writeErrorFile(pathFile)
                     checkString = f"{Style.BRIGHT}[CHECK MANUEL]{Style.RESET_ALL}"
                     print(error, checkString)
             else:
-                readLines(path_file)
+                readLines(pathFile)
 
 def readLines(file):
     with open(file, 'rb') as f:
@@ -64,8 +64,8 @@ def readOtherType(otherFile):
     with zipfile.ZipFile(otherFile, 'r') as zip:
         nameList = zip.namelist()
         for name in nameList:
-            string_deneme = zip.read(name=name)
-            fileControl = (str(string_deneme)).find(sys.argv[2])
+            lastName = zip.read(name=name)
+            fileControl = (str(lastName)).find(sys.argv[2])
             if fileControl != -1:
                 result = f"{Style.BRIGHT}[{NOW}]{Fore.GREEN}[SUCCESS-FILE FOUND] => {Fore.BLUE}[FILE]: {Fore.BLUE}{otherFile}\{str(name)}{Style.RESET_ALL}"
                 writeFile(otherFile+"\\"+str(name)+"\n")
